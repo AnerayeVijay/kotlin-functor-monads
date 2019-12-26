@@ -2,6 +2,7 @@
 
 ### What is functor
  - A functor is simply something that can be mapped over.
+ - Functors are basically containers for types
  - Functor is a data type that defines how map applies on it
  - To apply map to **lambda**
     - ***Functions*** or ***Lambda*** can be Functors too! When you use map on a function, you’re just doing function composition!
@@ -100,3 +101,8 @@
        fun length(s: String) = s.length
       
         ```
+  ### Monads
+  - Monads are the mechanism which makes automatic composition of special kids of functions
+  - In another word, ***Monad*** is minimal amount of structure needed to overload functional composition in a way to perform extra computation on tht intermediate value 
+  - Understand Monad with Use Case
+  

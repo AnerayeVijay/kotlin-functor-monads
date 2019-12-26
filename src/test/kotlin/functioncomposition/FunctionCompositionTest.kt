@@ -13,6 +13,11 @@ class FunctionCompositionTest {
     }
 
     @Test
+    fun `input string of two digit seperated by comma and and output divisision between tow`() {
+        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+    }
+
+    @Test
     fun `call composition with callable references`() {
         val oddLength = compose(::isOdd, ::length)
         val strings = listOf("a", "ab", "abc")
