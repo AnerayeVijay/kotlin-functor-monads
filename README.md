@@ -74,3 +74,21 @@
           Some(3) map curry(::tripleProduct) apply Some(5) apply Some(4)
           // => Some(60)
         ```
+## Monads
+- Before we start with Monads, it is important to understand ***function composition*** in kotlin
+  ### Function Composition
+    - Function composition is a technique to build functions using existing functions
+    - Takes the result of invoking the right-hand function as the parameter for the left-hand function.
+        ```kotlin
+        fun isOdd(x: Int) = x % 2 != 0
+        fun length(s: String) = s.length
+        
+        fun <A, B, C> compose(f: (B) -> C, g: (A) -> B): (A) -> C {
+            return { x -> f(g(x)) }
+        }
+      
+       val oddLength = compose(::isOdd, ::length)
+       fun isOdd(x: Int) = x % 2 != 0
+       fun length(s: String) = s.length
+      
+        ```
