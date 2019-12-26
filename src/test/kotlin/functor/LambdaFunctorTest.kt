@@ -20,5 +20,3 @@ val addTwoAndFive = { a: Int -> a + 2 } map { a: Int -> a + 3 }
 
 typealias IntFunction = (Int) -> Int
 
-typealias StringFunction = (String) -> Boolean
-
