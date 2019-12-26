@@ -2,24 +2,13 @@
 
 ### What is functor
  - A functor is simply something that can be mapped over.
+ - A functor is a data structure which acts like a container holding a generic type
  - Functors are basically containers for types
  - Functor is a data type that defines how map applies on it
- - To apply map to **lambda**
-    - ***Functions*** or ***Lambda*** can be Functors too! When you use map on a function, you’re just doing function composition!
-    - We need to wrapped Lambda in an object so that we can apply map
-        ```kotlin
-         typealias IntFunction = (Int) -> Int
-         // write map function on IntFunction
-         infix fun IntFunction.map(g: IntFunction): IntFunction {
-             return { x -> this(g(x)) }
-         }
-       
-         val foo = { a: Int -> a + 2 } map { a: Int -> a + 3 }
-         print(foo(10)) //print 15
-        ```
- - To apply map function on any **Value** 
+ - While we introduced functors as containers holding a value, sometimes those containers can have interesting properties. For this reason, functors are often described as "***values in a context***".
+
+ - To apply map function on any **Wrapped Value** 
     - We need  Class Wrapped Around a ***Value***
-    - A functor is any class that holds data and can be mapped over.
         ```kotlin
           class Functor<T> {
               infix fun <B> map(function: (T) -> B ): Functor<B> {
@@ -79,6 +68,19 @@
 - Before we start with Monads, it is important to understand ***function composition*** in kotlin
   ### Function Composition
     - Function composition is a technique to build functions using existing functions
+    - To apply map to **lambda**
+        - ***Functions*** or ***Lambda*** can be Functors too! When you use map on a function, you’re just doing function composition!
+        - We need to wrapped Lambda in an object so that we can apply map
+            ```kotlin
+             typealias IntFunction = (Int) -> Int
+             // write map function on IntFunction
+             infix fun IntFunction.map(g: IntFunction): IntFunction {
+                 return { x -> this(g(x)) }
+             }
+           
+             val foo = { a: Int -> a + 2 } map { a: Int -> a + 3 }
+             print(foo(10)) //print 15
+            ```
     - Takes the result of invoking the right-hand function as the parameter for the left-hand function.
         ```kotlin
       val add : (Int) -> Int = {x -> x + 1 }
