@@ -80,6 +80,14 @@
     - Function composition is a technique to build functions using existing functions
     - Takes the result of invoking the right-hand function as the parameter for the left-hand function.
         ```kotlin
+      val add : (Int) -> Int = {x -> x + 1 }
+      val mult : (Int) -> Int = { y -> y * 3}
+      fun <A,B,C>composeF(f: (B) -> C, g: (A) ->B) {
+        return { x -> f(g(x)) }
+      }
+      
+      val addOneThenMul3 = composeF(::mul3, ::add1)
+      
         fun isOdd(x: Int) = x % 2 != 0
         fun length(s: String) = s.length
         
