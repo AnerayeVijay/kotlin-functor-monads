@@ -10,7 +10,6 @@ class LambdaFunctorTest {
     fun `check map on lambda`() {
         assertThat(addTwoAndFive(10),equalTo(15))
     }
-
 }
 
 infix fun IntFunction.map(g: IntFunction): IntFunction {
@@ -20,3 +19,6 @@ infix fun IntFunction.map(g: IntFunction): IntFunction {
 val addTwoAndFive = { a: Int -> a + 2 } map { a: Int -> a + 3 }
 
 typealias IntFunction = (Int) -> Int
+
+typealias StringFunction = (String) -> Boolean
+

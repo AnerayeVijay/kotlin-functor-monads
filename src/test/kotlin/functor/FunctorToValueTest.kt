@@ -17,7 +17,9 @@ fun sumThree(n: Int) = n + 3
 
 
 sealed class Option<out A> {
+
     object None : Option<Nothing>()
+
     data class Some<out A>(val value: A) : Option<A>()
 
     inline infix fun <B> map(f: (A) -> B): Option<B> = when (this) {
