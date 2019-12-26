@@ -22,9 +22,6 @@ class ApplicativeTest {
      }
 }
 
-
-
-
 infix fun <A, B> Functor<(A) -> B>.apply(f: Functor<A>): Functor<B> =
     when (this) {
         is None -> None

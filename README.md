@@ -2,6 +2,7 @@
 
 ### What is functor
  - A functor is simply something that can be mapped over.
+ - Functor is a data type that defines how map applies on it
  - To apply map to **lambda**
     - ***Functions*** or ***Lambda*** can be Functors too! When you use map on a function, you’re just doing function composition!
     - We need to wrapped Lambda in an object so that we can apply map
