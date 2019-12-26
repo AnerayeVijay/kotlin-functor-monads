@@ -4,7 +4,7 @@ import org.hamcrest.CoreMatchers.equalTo
 import org.hamcrest.MatcherAssert.assertThat
 import org.junit.Test
 
-class FunRctionCompositionTest {
+class FunctionCompositionTest {
 
     @Test
     fun addOneAndMultiplyBy3UsingComposition() {
@@ -13,7 +13,7 @@ class FunRctionCompositionTest {
     }
 
     @Test
-    fun `call composion with callable references`() {
+    fun `call composition with callable references`() {
         val oddLength = compose(::isOdd, ::length)
         val strings = listOf("a", "ab", "abc")
         assertThat(strings.filter(oddLength).size, equalTo(2))
