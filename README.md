@@ -66,6 +66,7 @@
         ```
     
     - ***Apply triple product function:***
+    
          ```kotlin
           fun tripleProduct(a: Int, b: Int, c: Int) = a * b * c
           fun <A, B, C, D> curry(f: (A, B, C) -> D): (A) -> (B) -> (C) -> D = { a -> { b -> { c -> f(a, b, c) } } }

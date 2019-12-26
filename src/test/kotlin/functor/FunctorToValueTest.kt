@@ -31,4 +31,11 @@ sealed class Functor<out A> {
         fun <A> some(value: A): Functor<A> = Some(value)
     }
 
+    infix fun <A, B> Functor<(A) -> B>.apply(f: Functor<A>): Functor<B> =
+        when (this) {
+            is None -> None
+            is Some -> f.map(this.value)
+        }
+
+
 }
