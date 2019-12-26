@@ -1,5 +1,6 @@
 package functor
 
+import functor.Functor.Some
 import org.hamcrest.CoreMatchers.equalTo
 import org.hamcrest.MatcherAssert.assertThat
 import org.junit.Test
@@ -8,26 +9,26 @@ class FunctorToValueTest {
 
     @Test
     fun `add three into value 2`() {
-        val result = Option.Some(2).map (::sumThree)
-        assertThat(result,equalTo(Option.some(5)))
+        val result = Some(2).map (::sumThree)
+        assertThat(result,equalTo(Functor.some(5)))
     }
 }
 
 fun sumThree(n: Int) = n + 3
 
 
-sealed class Option<out A> {
+sealed class Functor<out A> {
 
-    object None : Option<Nothing>()
+    object None : Functor<Nothing>()
 
-    data class Some<out A>(val value: A) : Option<A>()
+    data class Some<out A>(val value: A) : Functor<A>()
 
-    inline infix fun <B> map(f: (A) -> B): Option<B> = when (this) {
+    inline infix fun <B> map(f: (A) -> B): Functor<B> = when (this) {
         is None -> this
         is Some -> Some(f(value))
     }
     companion object {
-        fun <A> some(value: A): Option<A> = Some(value)
+        fun <A> some(value: A): Functor<A> = Some(value)
     }
 
 }
