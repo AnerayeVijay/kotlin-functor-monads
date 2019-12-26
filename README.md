@@ -3,6 +3,7 @@
 ### What is functor
  - A functor is simply something that can be mapped over.
  - To apply map to **lambda**
+    - ***Functions*** or ***Lambda*** can be Functors too! When you use map on a function, you’re just doing function composition!
     - We need to wrapped Lambda in an object so that we can apply map
         ```kotlin
          typealias IntFunction = (Int) -> Int
@@ -15,7 +16,7 @@
          print(foo(10)) //print 15
         ```
  - To apply map function on any **Value** 
-    - We need  Class Wrapped Around a Value
+    - We need  Class Wrapped Around a ***Value***
     - A functor is any class that holds data and can be mapped over.
         ```kotlin
           class Functor<T> {
@@ -31,7 +32,6 @@
           val increment = Functor(3).map {it + 1}
       
         ```
- - Functions can be Functors too! When you use map on a function, you’re just doing function composition!
  - In category theory,  Functor is transformation between two category . For example, if there are `a` and `b` are two categories, Functor of a an b can then be written as f(a) : a -> b
 
 ### Why Are Functors Useful?
