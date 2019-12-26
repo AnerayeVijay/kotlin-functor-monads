@@ -47,10 +47,28 @@
 - In Applicative,We can define an ```apply``` function for every type supporting Applicative, which knows how to apply a function wrapped in the context of the type to a value wrapped in the same context:
 
     ```kotlin
-          infix fun <A, B> Option<(A) -> B>.apply(f: Option<A>): Option<B> =
+          infix fun <A, B> Option<(A) -> B>.apply(v: Option<A>): Option<B> =
             when (this) {
                 is Option.None -> Option.None
-                is Option.Some -> f.map(this.value)
+                is Option.Some -> v.map(this.value)
             }
     ```
  -  If you look carefully you will see that our operator only works in this specific order: ```Option(function) apply Option(value)```
+    - ***Apply a function that takes two arguments to two wrapped values?***
+        ```kotlin
+            fun curriedAddition(a: Int) = { b: Int ->
+                a + b
+            }
+            Some(3) map ::curriedAddition map Some(2) // => COMPILER ERROR
+        
+            // Use applicative
+            Some(3) map ::curriedAddition apply Some(2)
+        ```
+    
+    - ***Apply triple product function:***
+         ```kotlin
+          fun tripleProduct(a: Int, b: Int, c: Int) = a * b * c
+          fun <A, B, C, D> curry(f: (A, B, C) -> D): (A) -> (B) -> (C) -> D = { a -> { b -> { c -> f(a, b, c) } } }
+          Some(3) map curry(::tripleProduct) apply Some(5) apply Some(4)
+          // => Some(60)
+        ```
