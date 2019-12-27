@@ -5,8 +5,16 @@
  - A functor is a data structure which acts like a container holding a generic type
  - Functors are basically containers for types
  - Functor is a data type that defines how map applies on it
- - While we introduced functors as containers holding a value, sometimes those containers can have interesting properties. For this reason, functors are often described as "***values in a context***".
+ - Lets define the data type or container to hold value 
+     ```kotlin
+    class Functor<T> {
+         object None : Functor<Nothing>()
+         data class Some<out T>(val value: T) : Functor<T>()
 
+      }  
+    ```
+ - While we introduced functors as containers holding a value, sometimes those containers can have interesting properties. For this reason, functors are often described as "***values in a context***".
+ - 
  - To apply map function on any **Wrapped Value** 
     - We need  Class Wrapped Around a ***Value***
         ```kotlin
