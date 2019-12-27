@@ -14,9 +14,8 @@
       }  
     ```
  - While we introduced functors as containers holding a value, sometimes those containers can have interesting properties. For this reason, functors are often described as "***values in a context***".
- - 
- - To apply map function on any **Wrapped Value** 
-    - We need  Class Wrapped Around a ***Value***
+ - When a value is wrapped in a context, you can’t apply a normal function to it:
+ - This is where map function comes in to apply norman function to **Wrapped Value** 
         ```kotlin
           class Functor<T> {
               infix fun <B> map(function: (T) -> B ): Functor<B> {
