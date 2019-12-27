@@ -1,10 +1,11 @@
 ## Kotlin Functor
 
 ### What is functor
- - A functor is simply something that can be mapped over.
- - A functor is a data structure which acts like a container holding a generic type
- - Functors are basically containers for types
- - Functor is a data type that defines how map applies on it
+ - Functor can be defines  as 
+     - A functor is simply something that can be mapped over.
+     - A functor is a data structure which acts like a container holding a generic type
+     - Functors are basically containers for types
+     - Functor is a data type that defines how map applies on it
  - Lets define the data type or container to hold value 
      ```kotlin
     class Functor<T> {
