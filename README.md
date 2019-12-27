@@ -31,7 +31,7 @@
   
       val increment = Functor(3).map {it + 1}
   
-        ```
+      ```
  - In category theory,  Functor is transformation between two category . For example, if there are `a` and `b` are two categories, Functor of a an b can then be written as f(a) : a -> b
 
 ### Why Are Functors Useful?
