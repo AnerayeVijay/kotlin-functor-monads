@@ -16,19 +16,20 @@
  - While we introduced functors as containers holding a value, sometimes those containers can have interesting properties. For this reason, functors are often described as "***values in a context***".
  - When a value is wrapped in a context, you can’t apply a normal function to it:
  - This is where map function comes in to apply norman function to **Wrapped Value** 
-        ```kotlin
-          class Functor<T> {
-              infix fun <B> map(function: (T) -> B ): Functor<B> {
-                      return Functor(function(value))
-                  }
-          }   
-      
-          fun inc(value: Int): Int = value + 1
-      
-          val increment = Functor(3).map {::inc} //OR
-      
-          val increment = Functor(3).map {it + 1}
-      
+       
+    ```kotlin
+      class Functor<T> {
+          infix fun <B> map(function: (T) -> B ): Functor<B> {
+                  return Functor(function(value))
+              }
+      }   
+  
+      fun inc(value: Int): Int = value + 1
+  
+      val increment = Functor(3).map {::inc} //OR
+  
+      val increment = Functor(3).map {it + 1}
+  
         ```
  - In category theory,  Functor is transformation between two category . For example, if there are `a` and `b` are two categories, Functor of a an b can then be written as f(a) : a -> b
 
