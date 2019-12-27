@@ -143,5 +143,25 @@
         val divide : (Pair<Double,Double>) -> Result<Double> = {pair -> Some(pair.first.div(pair.second)) }
          
         ```
-        -   Returning the exception is very different that throwing exception, Return the exception it doen't intrrupt flow of program.
-        
+    - Returning the exception is very different that throwing exception, Return the exception it doen't interrupt flow of program.
+    - Now we have functions that returns a wrapped value, we have to apply this functions of wrapped value.
+    - Here is monad come in picture, Monads apply a function that returns a wrapped value to a wrapped value using flatMap
+    - So our flatMap looks like
+        ```kotlin
+              sealed class Result<out T> {
+                 object None : Result<Nothing>()
+                 data class Some<out T>(val value: T) : Result<T>()
+                 inline fun <B> flatMap(f: (T) -> Result<B>) : Result<B>  =
+                  when (this) {
+                      is None -> this
+                      is Some -> f(value)
+                  }           
+               }
+        ```
+    - Here we have written flatMap function on Functor
+    - **Modad is Functor that has  Flatmap**
+    
+   ### Advantage 
+   - Manage and control side effects
+   - Compose function with side effect with flatMap
+    
