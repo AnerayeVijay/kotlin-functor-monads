@@ -1,4 +1,4 @@
-## Kotlin Functor
+## Kotlin Functor Applicative and Monad
 
 ### What is functor
  - Functor can be defines  as 
