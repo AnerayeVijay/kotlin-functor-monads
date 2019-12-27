@@ -49,3 +49,4 @@ fun parseTwoStringToDouble(value:Pair<String,String>): Pair<Double,Double> {
 
 fun division(doubleValue:Pair<Double,Double>) = doubleValue.first/doubleValue.second
 
+

@@ -123,5 +123,25 @@
   ### Monads
   - Monads are the mechanism which makes automatic composition of special kids of functions
   - In another word, ***Monad*** is minimal amount of structure needed to overload functional composition in a way to perform extra computation on tht intermediate value 
-  - Understand Monad with Use Case
-  
+  - Understand Monad with Use Case split,parse divide described above,
+    -  Above use case for composition is  not perfect , the reason because things can go wrong like split function may be because these is no comma in between two digits, parse function may fail may be there is no member and eventually the result can fail
+    - For any exceptions, the program can be partial , then what we can do
+    - One way to do this is we modify functions to return "Embellished" results, That mean we can wrappe the result in class.. lets do it
+   
+        ```kotlin
+         //lets define Result class to wrap value or result
+         sealed class Result<out T> {
+             object None : Result<Nothing>()
+             data class Some<out T>(val value: T) : Result<T>()
+         }
+        val split : (String) -> Result<Pair<String,String>> = { s ->
+            val listString = s.split(",")
+            Some(listString.first() to listString.last())
+        }
+        val parse : (Pair<String,String>) -> Result<Pair<Double,Double>> = {pair -> Some(pair.first.toDouble() to pair.second.toDouble()) }
+        
+        val divide : (Pair<Double,Double>) -> Result<Double> = {pair -> Some(pair.first.div(pair.second)) }
+         
+        ```
+        -   Returning the exception is very different that throwing exception, Return the exception it doen't intrrupt flow of program.
+        
