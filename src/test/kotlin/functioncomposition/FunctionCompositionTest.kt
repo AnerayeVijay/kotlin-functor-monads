@@ -13,8 +13,10 @@ class FunctionCompositionTest {
     }
 
     @Test
-    fun `input string of two digit seperated by comma and and output divisision between tow`() {
-        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+    fun `input string of two digit seperated by comma and and output division between tow`() {
+        val actual : Double = 42.0
+        val result= compose(compose(::division,::parseTwoStringToDouble),::splitString)
+        assertThat(result("126,3"), equalTo(actual))
     }
 
     @Test
@@ -25,11 +27,25 @@ class FunctionCompositionTest {
     }
 }
 
+val parseToDouble : (Pair<String,String>) -> Pair<Double,Double> = {d -> d.first.toDouble() to  d.second.toDouble()}
+
+
 val addByOne : (Int) -> Int = { x-> x + 1 }
 val multiplyByThree : (Int) ->Int = { x-> x * 3 }
+
 fun <A,B,C> compose (f1: (B) -> C, f2 : (A) -> B ) : (A) -> C {
     return {x -> f1(f2(x)) }
 }
 
 fun isOdd(x: Int) = x % 2 != 0
 fun length(s: String) = s.length
+
+fun splitString(s:String) : Pair<String,String> {
+    return s.split(",").first() to s.split(",").last()
+}
+fun parseTwoStringToDouble(value:Pair<String,String>): Pair<Double,Double> {
+    return value.first.toDouble() to value.second.toDouble()
+}
+
+fun division(doubleValue:Pair<Double,Double>) = doubleValue.first/doubleValue.second
+

@@ -103,6 +103,23 @@
        fun length(s: String) = s.length
       
         ```
+    - Take another example , you will get the input as String of two digit separated by comma, you have divide first digit by second digit
+      ```Input= "126,3" ``` and output should be ```outout= 126/3 = 42 ```
+      - We are going to breakdown problem in three function
+            - Splitting
+            - Parsing 
+            - Division
+       - We usually do this using composition as below
+        ```kotlin
+           val splitString : (String) -> Pair<Stirng,String> = {s -> s.split(",").first() to s.split(",").last()}
+           val parseToDouble : (Pair<String,String>) -> Pair<Double,Double> = {d -> d.first.toDouble() to  d.second.toDouble()}
+           val division : (Pair<Double,Double>) -> Double = {d -> d.first/d.second}
+           fun <A,B,C>composeF(f: (B) -> C, g: (A) ->B) {
+              return { x -> f(g(x)) }
+           }
+           val result = composeF(composeF(division,parseToDouble),splitString)
+           print(result("126,3")) // 42
+        ```
   ### Monads
   - Monads are the mechanism which makes automatic composition of special kids of functions
   - In another word, ***Monad*** is minimal amount of structure needed to overload functional composition in a way to perform extra computation on tht intermediate value 
