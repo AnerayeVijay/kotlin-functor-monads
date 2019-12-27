@@ -20,11 +20,19 @@
        
     ```kotlin
       class Functor<T> {
-          infix fun <B> map(function: (T) -> B ): Functor<B> {
-                  return Functor(function(value))
+          object None : Functor<Nothing>()
+          data class Some<out T>(val value: T) : Functor<T>()
+          infix fun <B> map(function: (T) -> B ): Functor<B> =
+               when {
+                   is None -> this
+                   is Some -> function(value)
               }
-      }   
-  
+      } 
+     ```
+ - Lets apply function on the wrapped value  
+     ```kotlin
+     
+   
       fun inc(value: Int): Int = value + 1
   
       val increment = Functor(3).map {::inc} //OR
