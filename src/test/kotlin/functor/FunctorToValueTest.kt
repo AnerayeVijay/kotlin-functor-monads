@@ -37,5 +37,4 @@ sealed class Functor<out A> {
             is Some -> f.map(this.value)
         }
 
-
 }

@@ -1,6 +1,5 @@
 package monads
 
-import functor.Functor
 import monads.Result.Companion.some
 import monads.Result.Some
 import org.hamcrest.CoreMatchers.equalTo
